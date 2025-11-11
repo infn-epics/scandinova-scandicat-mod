@@ -34,20 +34,27 @@ modbusInterposeConfig("$(RFMOD_ASYNPORT)", 0, 2000, 0)
 ##                        startAddr, length, dataType, pollMsec, plcType)
 
 ##############################################################################
-# GROUP 1: System Status Block (Offsets 0-25)
+# GROUP 1A: System Status Block Part 1 (Offsets 0-9)
 # Contains: Protocol ID, revision, watchdog, state, status, access level, 
-#           delay timer, pulse rate, and setpoint readbacks
+#           delay timer, pulse rate (mixed types, read as UINT16)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_SYS_STATUS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 0, 27, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_SYS_STATUS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 0, 10, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+
+##############################################################################
+# GROUP 1B: Setpoint Readbacks (Offsets 20-26)
+# Contains: State, CCPS voltage, filament current, pulse width setpoints RBV
+#           (mixed types, read as UINT16)
+##############################################################################
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_SP_RBV", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 20, 7, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ## Watchdog needs faster polling (separate port for different scan rate)
 drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_WD_RB", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 2, 1, 0, $(RFMOD_WD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 2: CCPS Voltages Block (Offsets 100-106)
-# Contains: CCPS1, CCPS2, CCPS3 voltage readbacks (each 2 words = FLOAT32)
+# Contains: CCPS1, CCPS2, CCPS3 voltage readbacks (3 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_CCPS_VOLT", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 100, 6, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_CCPS_VOLT", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 100, 3, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 3: CCPS Interlock Status (Offsets 120-123)
@@ -57,53 +64,53 @@ drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_CCPS_ILCK", "$(RFMOD_ASYNPORT)", $(RFM
 
 ##############################################################################
 # GROUP 4: Filament Power Supply (Offsets 200-203)
-# Contains: Current and voltage readbacks (each 2 words = FLOAT32)
+# Contains: Current and voltage readbacks (2 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_FILPS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 200, 4, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_FILPS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 200, 2, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 5: Ion Pump (Offsets 300-301)
-# Contains: Recorder readback (2 words = FLOAT32)
+# Contains: Recorder readback (1 FLOAT32 value)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_IONPS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 300, 2, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_IONPS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 300, 1, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 6: Solenoid Power Supply (Offsets 400-403)
-# Contains: Current and voltage readbacks (each 2 words = FLOAT32)
+# Contains: Current and voltage readbacks (2 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_SOLPS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 400, 4, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_SOLPS", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 400, 2, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 7: Pulse Digitizer (Offsets 500-505)
-# Contains: Current, voltage, pulse width readbacks (each 2 words = FLOAT32)
+# Contains: Current, voltage, pulse width readbacks (3 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_PULSE", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 500, 6, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_PULSE", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 500, 3, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 8: Tank Monitoring (Offsets 600-603)
-# Contains: Oil temperature and level (each 2 words = FLOAT32)
+# Contains: Oil temperature and level (2 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_TANK", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 600, 4, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_TANK", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 600, 2, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 9: Cooling System Temperatures (Offsets 700-707)
 # Contains: Inlet, outlet, solenoid, and klystron body temperatures 
-#           (each 2 words = FLOAT32)
+#           (4 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_COOL_TEMP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 700, 8, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_COOL_TEMP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 700, 4, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 10: Klystron RF Monitoring (Offsets 820-827)
 # Contains: Forward power, reflected power, VSWR, pulse length 
-#           (each 2 words = FLOAT32)
+#           (4 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_KLY_RF", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 820, 8, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_KLY_RF", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 820, 4, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 11: Cooling System Flows (Offsets 900-913)
-# Contains: All cooling water flow measurements (each 2 words = FLOAT32)
+# Contains: All cooling water flow measurements (7 FLOAT32 values)
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_COOL_FLOW", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 900, 14, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_COOL_FLOW", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 4, 900, 7, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # HOLDING REGISTERS (Function Codes 3/6/16: Read/Write Holding Registers)
@@ -119,19 +126,19 @@ drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_CTRL", "$(RFMOD_ASYNPORT)", $(RFMOD_SL
 # GROUP 13: CCPS Voltage Setpoint (Offset 100-101)
 # Write using Function 16 (Write Multiple Registers) for FLOAT32
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_CCPS_V_SP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 16, 100, 2, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_CCPS_V_SP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 16, 100, 1, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 14: Filament Current Setpoint (Offset 200-201)
 # Write using Function 16 (Write Multiple Registers) for FLOAT32
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_FIL_I_SP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 16, 200, 2, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_FIL_I_SP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 16, 200, 1, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # GROUP 15: Pulse Width Setpoint (Offset 300-301)
 # Write using Function 16 (Write Multiple Registers) for FLOAT32
 ##############################################################################
-drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_PW_SP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 16, 300, 2, 0, $(RFMOD_POLLING), $(RFMOD_MSGS))
+drvModbusAsynConfigure("$(RFMOD_ASYNPORT)_PW_SP", "$(RFMOD_ASYNPORT)", $(RFMOD_SLAVE_ADDR), 16, 300, 1, 7, $(RFMOD_POLLING), $(RFMOD_MSGS))
 
 ##############################################################################
 # Debug Settings (commented out by default)
