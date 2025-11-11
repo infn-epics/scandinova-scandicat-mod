@@ -7,8 +7,7 @@ file "singlein.template" { pattern
         { ":CCPS1:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS1_VOLT", 0, 0xFFFF, "V", "CCPS1 voltage"} 
         { ":CCPS2:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS2_VOLT", 0, 0xFFFF, "V", "CCPS2 voltage"}   
         { ":CCPS3:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS3_VOLT", 0, 0xFFFF, "V", "CCPS3 voltage"}
-        { ":FILPS:CURR_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR", 0, 0xFFFF, "A", "Filaments current SP RBV"}
-        { ":FILPS:CURR_SET_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR_SR", 0, 0xFFFF, "A", "Filaments current"}
+        { ":FILPS:CURR_SET_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR_SR", 0, 0xFFFF, "A", "Filaments current setpoint RBV"}
         { ":FILPS:CURR_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR", 0, 0xFFFF, "A", "Filaments current"}
         { ":FILPS:VOLT_RB", "$(RFMOD_ASYNPORT)_FILPS_VOLT", 0, 0xFFFF, "V", "Filaments voltage"}
         { ":IONPMP:R_RB", "$(RFMOD_ASYNPORT)_IONPS_R", 0, 0xFFFF, "V", "Ion pump controller"}
@@ -33,7 +32,7 @@ file "singlein.template" { pattern
         { ":KLY:BODYFLOW_RB", "$(RFMOD_ASYNPORT)_BODYFLOW", 0, 0xFFFF, "l/s", "Klystron body cooling water flow"} 
         { ":KLY:RFFWD_RB", "$(RFMOD_ASYNPORT)_KLYRFFWD", 0, 0xFFFF, "dBm", "Klystron forward RF power"} 
         { ":KLY:RFREFL_RB", "$(RFMOD_ASYNPORT)_KLYRFREFL", 0, 0xFFFF, "dBm", "Klystron reflected RF power"} 
-        { ":KLY:RFVSWR_RB", "$(RFMOD_ASYNPORT)_KLYRFREFL", 0, 0xFFFF, "", "Klystron VSWR"} 
+        { ":KLY:RFVSWR_RB", "$(RFMOD_ASYNPORT)_KLYRFVSWR", 0, 0xFFFF, "", "Klystron VSWR"} 
         { ":KLY:RFPLEN_RB", "$(RFMOD_ASYNPORT)_KLYRFPLEN", 0, 0xFFFF, "us", "Klystron pulse length"} 
 }
 
