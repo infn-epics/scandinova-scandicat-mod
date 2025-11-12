@@ -1,0 +1,27 @@
+################################################################################
+# Scandinova RF Modulator - Optimized Single Input Template
+# Uses block reads with register offsets
+#
+# Macros:
+#   PREFIX       - PV name prefix
+#   PORT         - Asyn port name for the block read
+#   OFFSET       - Register offset within the block (0, 2, 4, etc. for floats)
+#   RECORD       - Record name suffix (e.g., CCPS1:VOLT_RB)
+#   DESC         - Record description
+#   EGU          - Engineering units
+#   PREC         - Precision (decimal places)
+#   DATATYPE     - FLOAT32_LE or INT16 or UINT16
+#   HOPR         - High operating range (optional, default 0xFFFF)
+#   LOPR         - Low operating range (optional, default 0)
+################################################################################
+
+record(ai, "$(PREFIX):$(RECORD)") {
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(RFMOD_ASYNPORT)_$(PORT) $(OFFSET=0))$(DATATYPE=FLOAT32_LE)")
+    field(DESC, "$(DESC)")
+    field(EGU,  "$(EGU=)")
+    field(HOPR, "$(HOPR=0xFFFF)")
+    field(LOPR, "$(LOPR=0)")
+    field(PREC, "$(PREC=2)")
+    field(SCAN, "$(SCAN=I/O Intr)")
+}

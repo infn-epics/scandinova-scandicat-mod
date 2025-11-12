@@ -1,0 +1,180 @@
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR,  EGU,   PREC, DESC }
+    { ":PLS:REPR_RB",           "$(RFMOD_ASYNPORT)_SYS_STATUS",    8,      "FLOAT32_LE", 0,    10000, "Hz",  1,    "Pulse repetition rate"}
+    { ":CCPS:VOLT_SET_RB",      "$(RFMOD_ASYNPORT)_SYS_STATUS",    21,     "FLOAT32_LE", 0,    2000,  "V",   1,    "CCPS voltage SP RBV"}  
+    { ":FILPS:CURR_SET_RB",     "$(RFMOD_ASYNPORT)_SYS_STATUS",    23,     "FLOAT32_LE", 0,    50,    "A",   2,    "Filaments current SP RBV"}
+    { ":PLS:WDTH_SET_RB",       "$(RFMOD_ASYNPORT)_SYS_STATUS",    25,     "FLOAT32_LE", 0,    20,    "us",  2,    "Pulse width SP RBV"}
+}
+
+file "singlein-int-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE, LOPR, HOPR,  DESC }
+    { ":TCP:PROT_ID_RB",        "$(RFMOD_ASYNPORT)_SYS_STATUS",    0,      "UINT16",  0,    65535, "Modbus TCP Protocol ID"}
+    { ":TCP:PROT_REV_RB",       "$(RFMOD_ASYNPORT)_SYS_STATUS",    1,      "UINT16",  0,    65535, "Modbus TCP Protocol Revision"}
+    { ":STATE_RB",              "$(RFMOD_ASYNPORT)_SYS_STATUS",    3,      "INT16",   -10,  10,    "State readback"}
+    { ":STATUS_RB",             "$(RFMOD_ASYNPORT)_SYS_STATUS",    4,      "UINT16",  0,    65535, "Status bits"}
+    { ":ACC_LVL_RB",            "$(RFMOD_ASYNPORT)_SYS_STATUS",    5,      "INT16",   0,    10,    "Access level"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU, PREC, DESC }
+    { ":CCPS1:VOLT_RB",         "$(RFMOD_ASYNPORT)_CCPS_VOLT",     0,      "FLOAT32_LE", 0,    2000, "V", 1,    "CCPS1 voltage"} 
+    { ":CCPS2:VOLT_RB",         "$(RFMOD_ASYNPORT)_CCPS_VOLT",     2,      "FLOAT32_LE", 0,    2000, "V", 1,    "CCPS2 voltage"}   
+    { ":CCPS3:VOLT_RB",         "$(RFMOD_ASYNPORT)_CCPS_VOLT",     4,      "FLOAT32_LE", 0,    2000, "V", 1,    "CCPS3 voltage"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU, PREC, DESC }
+    { ":FILPS:CURR_RB",         "$(RFMOD_ASYNPORT)_FILPS",         0,      "FLOAT32_LE", 0,    50,   "A", 2,    "Filaments current"}
+    { ":FILPS:VOLT_RB",         "$(RFMOD_ASYNPORT)_FILPS",         2,      "FLOAT32_LE", 0,    100,  "V", 1,    "Filaments voltage"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR,  EGU, PREC, DESC }
+    { ":IONPMP:R_RB",           "$(RFMOD_ASYNPORT)_IONPS",         0,      "FLOAT32_LE", 0,    1000,  "V", 1,    "Ion pump controller"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU, PREC, DESC }
+    { ":SOLPS:CURR_RB",         "$(RFMOD_ASYNPORT)_SOLPS",         0,      "FLOAT32_LE", 0,    100,  "A", 2,    "Solenoid current"}
+    { ":SOLPS:VOLT_RB",         "$(RFMOD_ASYNPORT)_SOLPS",         2,      "FLOAT32_LE", 0,    100,  "V", 1,    "Solenoid voltage"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR,  EGU,  PREC, DESC }
+    { ":PLS:CURR_RB",           "$(RFMOD_ASYNPORT)_PULSE",         0,      "FLOAT32_LE", 0,    1000,  "A",  1,    "Pulse current"}
+    { ":PLS:VOLT_RB",           "$(RFMOD_ASYNPORT)_PULSE",         2,      "FLOAT32_LE", 0,    200,   "kV", 1,    "Pulse voltage"}
+    { ":PLS:WDTH_RB",           "$(RFMOD_ASYNPORT)_PULSE",         4,      "FLOAT32_LE", 0,    20,    "us", 2,    "Pulse width"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU,  PREC, DESC }
+    { ":OIL:TEMP_RB",           "$(RFMOD_ASYNPORT)_TANK",          0,      "FLOAT32_LE", 0,    150,  "C",  1,    "Transformer tank oil temperature"}
+    { ":OIL:LVL_RB",            "$(RFMOD_ASYNPORT)_TANK",          2,      "FLOAT32_LE", 0,    1000, "mm", 0,    "Transformer tank oil level"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU, PREC, DESC }
+    { ":CLL:INLETTEMP_RB",      "$(RFMOD_ASYNPORT)_COOL_TEMP",     0,      "FLOAT32_LE", 0,    100,  "C", 1,    "Cooling water inlet temperature"}  
+    { ":CLL:OUTLETTEMP_RB",     "$(RFMOD_ASYNPORT)_COOL_TEMP",     2,      "FLOAT32_LE", 0,    100,  "C", 1,    "Cooling water outlet temperature"}
+    { ":SOLPS:TEMP_RB",         "$(RFMOD_ASYNPORT)_COOL_TEMP",     4,      "FLOAT32_LE", 0,    150,  "C", 1,    "Solenoid temperature"}
+    { ":KLY:OUTLETTEMP_RB",     "$(RFMOD_ASYNPORT)_COOL_TEMP",     6,      "FLOAT32_LE", 0,    100,  "C", 1,    "Klystron body outlet temperature"}
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU,  PREC, DESC }
+    { ":KLY:RFFWD_RB",          "$(RFMOD_ASYNPORT)_KLY_RF",        0,      "FLOAT32_LE", -50,  50,   "dBm", 1,   "Klystron forward RF power"} 
+    { ":KLY:RFREFL_RB",         "$(RFMOD_ASYNPORT)_KLY_RF",        2,      "FLOAT32_LE", -50,  50,   "dBm", 1,   "Klystron reflected RF power"} 
+    { ":KLY:RFVSWR_RB",         "$(RFMOD_ASYNPORT)_KLY_RF",        4,      "FLOAT32_LE", 1,    10,   "",    2,   "Klystron VSWR"} 
+    { ":KLY:RFPLEN_RB",         "$(RFMOD_ASYNPORT)_KLY_RF",        6,      "FLOAT32_LE", 0,    20,   "us",  2,   "Klystron pulse length"} 
+}
+
+file "singlein-optimized.template"
+{
+pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU,   PREC, DESC }
+    { ":CCPS:FLOW_1_RB",        "$(RFMOD_ASYNPORT)_COOL_FLOW",     0,      "FLOAT32_LE", 0,    10,   "l/s", 2,    "CCPS cooling water flow #1"}
+    { ":CCPS:FLOW_2_RB",        "$(RFMOD_ASYNPORT)_COOL_FLOW",     2,      "FLOAT32_LE", 0,    10,   "l/s", 2,    "CCPS cooling water flow #2"}
+    { ":CCPS:FLOW_3_RB",        "$(RFMOD_ASYNPORT)_COOL_FLOW",     4,      "FLOAT32_LE", 0,    10,   "l/s", 2,    "CCPS cooling water flow #3"}
+    { ":CCPS:FLOW_4_RB",        "$(RFMOD_ASYNPORT)_COOL_FLOW",     6,      "FLOAT32_LE", 0,    10,   "l/s", 2,    "CCPS cooling water flow #4"}
+    { ":KLY:BODYFLOW_RB",       "$(RFMOD_ASYNPORT)_COOL_FLOW",     8,      "FLOAT32_LE", 0,    10,   "l/s", 2,    "Klystron body cooling water flow"} 
+    { ":CLL:FLOW_RB",           "$(RFMOD_ASYNPORT)_COOL_FLOW",     10,     "FLOAT32_LE", 0,    10,   "l/s", 2,    "Collector cooling water flow"} 
+    { ":SOLPS:FLOW_RB",         "$(RFMOD_ASYNPORT)_COOL_FLOW",     12,     "FLOAT32_LE", 0,    10,   "l/s", 2,    "Solenoid cooling water flow"} 
+}
+
+file "singleout-optimized.template"
+{
+pattern
+{ RECNAME,                  PORT,                               OFFSET, DATA_TYPE,    LOPR, HOPR, EGU,  PREC, DESC }
+    { ":CCPS:V_SP",             "$(RFMOD_ASYNPORT)_CCPS_V_SP",     0,      "FLOAT32_LE", 0,    1500, "V",  1,    "Pulse amplitude for all CCPS"}
+    { ":FILPS:CURR_SP",         "$(RFMOD_ASYNPORT)_FIL_I_SP",      0,      "FLOAT32_LE", 0,    30,   "A",  2,    "Filaments current"}
+    { ":PLS:WDTH_SP",           "$(RFMOD_ASYNPORT)_PW_SP",         0,      "FLOAT32_LE", 2,    10,   "us", 2,    "Pulse width"}
+}
+
+file "singleout-int-optimized.template" { pattern
+    { RECNAME,                  PORT,                               OFFSET, DATA_TYPE, LOPR, HOPR,  DESC }
+    { ":WD_SP",                 "$(RFMOD_ASYNPORT)_CTRL",          0,      "UINT16",  0,    65535, "Watchdog counter"}
+    { ":STATE_SP",              "$(RFMOD_ASYNPORT)_CTRL",          1,      "INT16",   -10,  10,    "State target"}
+    { ":CMD_SP",                "$(RFMOD_ASYNPORT)_CTRL",          2,      "UINT16",  0,    65535, "Command bits"}
+substitutions
+
+# Optimized single-input records using block-read ports; PORT is the block suffix,
+# the template will prepend "$(RFMOD_ASYNPORT)_" automatically.
+file "singlein-optimized.template" {
+    pattern { RECORD,              PORT,                OFFSET, DESC,                                   EGU,  PREC }
+    { "PLS:REPR_RB",       "STATUS_BLOCK",      8,  "Pulse repetition rate",                 "Hz", 2 }
+    { "CCPS:VOLT_SET_RB",  "SETPOINT_RB_BLOCK", 1,  "CCPS voltage SP RBV",                   "V",  2 }
+    { "FILPS:CURR_SET_RB", "SETPOINT_RB_BLOCK", 3,  "Filaments current setpoint RBV",        "A",  2 }
+    { "PLS:WDTH_SET_RB",   "SETPOINT_RB_BLOCK", 5,  "Pulse width set SP RBV",                "us", 2 }
+    { "CCPS1:VOLT_RB",     "CCPS_VOLTS",        0,  "CCPS1 voltage",                         "V",  2 }
+    { "CCPS2:VOLT_RB",     "CCPS_VOLTS",        2,  "CCPS2 voltage",                         "V",  2 }
+    { "CCPS3:VOLT_RB",     "CCPS_VOLTS",        4,  "CCPS3 voltage",                         "V",  2 }
+    { "FILPS:CURR_RB",     "FILPS_BLOCK",       0,  "Filaments current",                     "A",  2 }
+    { "FILPS:VOLT_RB",     "FILPS_BLOCK",       2,  "Filaments voltage",                     "V",  2 }
+    { "IONPMP:R_RB",       "IONPS_R",           0,  "Ion pump controller",                   "V",  2 }
+    { "SOLPS:CURR_RB",     "SOLPS_BLOCK",       0,  "Solenoid current",                      "A",  2 }
+    { "SOLPS:VOLT_RB",     "SOLPS_BLOCK",       2,  "Solenoid voltage",                      "V",  2 }
+    { "PLS:CURR_RB",       "PULSE_BLOCK",       0,  "Pulse current",                         "A",  2 }
+    { "PLS:VOLT_RB",       "PULSE_BLOCK",       2,  "Pulse voltage",                         "kV", 2 }
+    { "PLS:WDTH_RB",       "PULSE_BLOCK",       4,  "Pulse width",                           "us", 2 }
+    { "OIL:TEMP_RB",       "TANK_BLOCK",        0,  "Transformer tank oil temperature",      "C",  2 }
+    { "OIL:LVL_RB",        "TANK_BLOCK",        2,  "Transformer tank oil level",            "mm", 2 }
+    { "CLL:INLETTEMP_RB",  "TEMP_BLOCK",        0,  "Cooling water inlet temperature",       "C",  2 }
+    { "CLL:OUTLETTEMP_RB", "TEMP_BLOCK",        2,  "Cooling water outlet temperature",      "C",  2 }
+    { "SOLPS:TEMP_RB",     "TEMP_BLOCK",        4,  "Solenoid temperature",                  "C",  2 }
+    { "KLY:OUTLETTEMP_RB", "TEMP_BLOCK",        6,  "Klystron body outlet temperature",      "C",  2 }
+    { "KLY:RFFWD_RB",      "RF_BLOCK",          0,  "Klystron forward RF power",             "W",  2 }
+    { "KLY:RFREFL_RB",     "RF_BLOCK",          2,  "Klystron reflected RF power",           "W",  2 }
+    { "KLY:RFVSWR_RB",     "RF_BLOCK",          4,  "Klystron RF VSWR",                      "",   2 }
+    { "KLY:RFPLEN_RB",     "RF_BLOCK",          6,  "Klystron RF pulse length",              "us", 2 }
+    { "CCPS:FLOW_1_RB",    "FLOW_BLOCK",        0,  "CCPS cooling water flow #1",            "l/s", 2 }
+    { "CCPS:FLOW_2_RB",    "FLOW_BLOCK",        2,  "CCPS cooling water flow #2",            "l/s", 2 }
+    { "CCPS:FLOW_3_RB",    "FLOW_BLOCK",        4,  "CCPS cooling water flow #3",            "l/s", 2 }
+    { "CCPS:FLOW_4_RB",    "FLOW_BLOCK",        6,  "CCPS cooling water flow #4",            "l/s", 2 }
+    { "KLY:BODYFLOW_RB",   "FLOW_BLOCK",        8,  "Klystron body cooling water flow",      "l/s", 2 }
+    { "CLL:FLOW_RB",       "FLOW_BLOCK",       10,  "Collector cooling water flow",          "l/s", 2 }
+    { "SOLPS:FLOW_RB",     "FLOW_BLOCK",       12,  "Solenoid cooling water flow",           "l/s", 2 }
+}
+
+# Float setpoints use the non-optimized singleout.template which expects full port names
+file "singleout.template" {
+    pattern { RECNAME,          PORT,                               LOPR, HOPR,  EGU,  DESC }
+    { ":CCPS:V_SP",      "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    65000, "V",  "CCPS voltage SP" }
+    { ":PLS:WDTH_SP",    "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    65000, "us", "Pulse width SP"  }
+    { ":FILPS:CURR_SP",  "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    65000, "A",  "Filament current SP" }
+}
+
+## RF modulator control, state, status, TCP and watchdog records
+file "scandinova-rfmod-specific.template" { pattern { PORT } { "$(RFMOD_ASYNPORT)" } }
+file "scandinova-rfmod-tcp.template"      { pattern { PORT } { "$(RFMOD_ASYNPORT)" } }
+file "scandinova-rfmod-wd.template"       { pattern { PORT } { "$(RFMOD_ASYNPORT)" } }
+file "delay-timer.template"               { pattern { PORT } { "$(RFMOD_ASYNPORT)" } }
+
+## RF modulator CCPS interlock status records
+file "ccps-status.template" { pattern
+    { PORT,               CCPS_NUM }
+    { "$(RFMOD_ASYNPORT)", 1 }
+    { "$(RFMOD_ASYNPORT)", 2 }
+    { "$(RFMOD_ASYNPORT)", 3 }
+}
+

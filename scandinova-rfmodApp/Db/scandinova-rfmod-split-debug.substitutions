@@ -1,0 +1,88 @@
+################################################################################
+# Scandinova RF Modulator - Split Debug Substitutions
+# One Modbus port per PV (OFFSET=0 for all), using proto/scandinova-rfmod-split-debug.cmd
+################################################################################
+
+global {
+    PREFIX="$(PREFIX)"
+    RFMOD_ASYNPORT="$(RFMOD_ASYNPORT)"
+}
+
+file "singlein-optimized.template" {
+    pattern { RECORD,              PORT,                           OFFSET, DESC,                                    EGU,  PREC, SCAN }
+    { "PLS:REPR_RB",       "READ_PLS_REPR_RB",            0,      "Pulse repetition rate",                 "Hz", 2  }
+
+    { "CCPS:VOLT_SET_RB",  "READ_CCPS_VOLT_SET_RB",       0,      "CCPS voltage SP RBV",                   "V",  2  }
+    { "FILPS:CURR_SET_RB", "READ_FILPS_CURR_SET_RB",      0,      "Filaments current setpoint RBV",        "A",  2  }
+    { "PLS:WDTH_SET_RB",   "READ_PLS_WDTH_SET_RB",        0,      "Pulse width set SP RBV",                "us", 2  }
+
+    { "CCPS1:VOLT_RB",     "READ_CCPS1_VOLT",             0,      "CCPS1 voltage",                         "V",  2  }
+    { "CCPS2:VOLT_RB",     "READ_CCPS2_VOLT",             0,      "CCPS2 voltage",                         "V",  2  }
+    { "CCPS3:VOLT_RB",     "READ_CCPS3_VOLT",             0,      "CCPS3 voltage",                         "V",  2  }
+
+    { "FILPS:CURR_RB",     "READ_FILPS_CURR",             0,      "Filaments current",                     "A",  2  }
+    { "FILPS:VOLT_RB",     "READ_FILPS_VOLT",             0,      "Filaments voltage",                     "V",  2  }
+
+    { "IONPMP:R_RB",       "READ_IONPS_R",                0,      "Ion pump controller",                   "V",  2  }
+
+    { "SOLPS:CURR_RB",     "READ_SOLPS_CURR",             0,      "Solenoid current",                      "A",  2  }
+    { "SOLPS:VOLT_RB",     "READ_SOLPS_VOLT",             0,      "Solenoid voltage",                      "V",  2  }
+
+    { "PLS:CURR_RB",       "READ_PLS_CURR",               0,      "Pulse current",                         "A",  2  }
+    { "PLS:VOLT_RB",       "READ_PLS_VOLT",               0,      "Pulse voltage",                         "kV", 2  }
+    { "PLS:WDTH_RB",       "READ_PLS_WDTH",               0,      "Pulse width",                           "us", 2  }
+
+    { "OIL:TEMP_RB",       "READ_TANK_TEMP",              0,      "Transformer tank oil temperature",      "C",  2  }
+    { "OIL:LVL_RB",        "READ_TANK_LEVEL",             0,      "Transformer tank oil level",            "mm", 2  }
+
+    { "CLL:INLETTEMP_RB",  "READ_CLL_IN_TEMP",            0,      "Cooling water inlet temperature",       "C",  2  }
+    { "CLL:OUTLETTEMP_RB", "READ_CLL_OUT_TEMP",           0,      "Cooling water outlet temperature",      "C",  2  }
+    { "SOLPS:TEMP_RB",     "READ_SOLPS_TEMP",             0,      "Solenoid temperature",                  "C",  2  }
+    { "KLY:OUTLETTEMP_RB", "READ_KLY_OUT_TEMP",           0,      "Klystron body outlet temperature",      "C",  2  }
+
+    { "KLY:RFFWD_RB",      "READ_RF_FWD",                 0,      "Klystron fwd RF pow (n/a)",             "W",  2, "Passive"  }
+    { "KLY:RFREFL_RB",     "READ_RF_REFL",                0,      "Klystron refl RF pow (n/a)",           "W",  2, "Passive"  }
+    { "KLY:RFVSWR_RB",     "READ_RF_VSWR",                0,      "Klystron RF VSWR (n/a)",               "",   2, "Passive"  }
+    { "KLY:RFPLEN_RB",     "READ_RF_PLEN",                0,      "Klystron RF pulse len (n/a)",          "us", 2, "Passive"  }
+
+    { "CCPS:FLOW_1_RB",    "READ_FLOW_CCPS1",             0,      "CCPS flow #1 (n/a)",            "l/s", 2, "Passive" }
+    { "CCPS:FLOW_2_RB",    "READ_FLOW_CCPS2",             0,      "CCPS flow #2 (n/a)",            "l/s", 2, "Passive" }
+    { "CCPS:FLOW_3_RB",    "READ_FLOW_CCPS3",             0,      "CCPS flow #3 (n/a)",            "l/s", 2, "Passive" }
+    { "CCPS:FLOW_4_RB",    "READ_FLOW_CCPS4",             0,      "CCPS flow #4 (n/a)",            "l/s", 2, "Passive" }
+    { "KLY:BODYFLOW_RB",   "READ_FLOW_BODY",              0,      "Klystron body flow (n/a)",      "l/s", 2, "Passive" }
+    { "CLL:FLOW_RB",       "READ_FLOW_CLL",               0,      "Collector flow (n/a)",          "l/s", 2, "Passive" }
+    { "SOLPS:FLOW_RB",     "READ_FLOW_SOLPS",             0,      "Solenoid flow (n/a)",           "l/s", 2, "Passive" }
+}
+
+## Control, TCP, WD, delay templates use base port
+file "scandinova-rfmod-specific.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+file "scandinova-rfmod-tcp.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+file "scandinova-rfmod-wd.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+file "delay-timer.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+
+file "ccps-status-optimized.template" {
+    pattern { CCPS_NUM,  PORT,                 OFFSET }
+    { "1",       "READ_CCPS1_ILCKS",  0      }
+    { "2",       "READ_CCPS2_ILCKS",  0      }
+    { "3",       "READ_CCPS3_ILCKS",  0      }
+}
+
+## Setpoint outputs (enable writing of CCPS voltage, pulse width, filament current)
+file "singleout.template" {
+    pattern { RECNAME,             PORT,                               LOPR, HOPR,  EGU,  DESC }
+    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    65000, "V",  "CCPS voltage SP"          }
+    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    65000, "us", "Pulse width SP"           }
+    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    65000, "A",  "Filament current SP"      }
+}
