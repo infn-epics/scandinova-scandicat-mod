@@ -1,0 +1,92 @@
+################################################################################
+# Scandinova RF Modulator - Optimized Substitutions File (Split Troubleshooting Variant)
+# Original grouped optimization collapsed ~40 single-register ports to ~15 block ports.
+# This variant further splits several blocks (setpoints, filament, solenoid, pulse,
+# tank, temperatures, flow) to isolate unsupported registers and reduce exception spam.
+# Adjusted OFFSETS reflect new block start addresses.
+#
+# Block port names defined in: proto/scandinova-rfmod-optimized.cmd
+# Keep PV names stable while changing only PORT and OFFSET mappings here.
+################################################################################
+
+global {
+    PREFIX="$(PREFIX)"
+    RFMOD_ASYNPORT="$(RFMOD_ASYNPORT)"
+}
+
+file "singlein-optimized.template" {
+    pattern { RECORD,              PORT,              OFFSET, DESC,                                    EGU,  PREC }
+    { "PLS:REPR_RB",       "STATUS_BLOCK",     8,      "Pulse repetition rate",                 "Hz", 2  }
+    { "CCPS:VOLT_SET_RB",  "SETPOINT_RB_A",    1,      "CCPS voltage SP RBV",                   "V",  2  }
+    { "FILPS:CURR_SET_RB", "SETPOINT_RB_A",    3,      "Filaments current setpoint RBV",        "A",  2  }
+    { "PLS:WDTH_SET_RB",   "SETPOINT_RB_B",    1,      "Pulse width set SP RBV",                "us", 2  }
+    { "CCPS1:VOLT_RB",     "CCPS_VOLTS",       0,      "CCPS1 voltage",                         "V",  2  }
+    { "CCPS2:VOLT_RB",     "CCPS_VOLTS",       2,      "CCPS2 voltage",                         "V",  2  }
+    { "CCPS3:VOLT_RB",     "CCPS_VOLTS",       4,      "CCPS3 voltage",                         "V",  2  }
+    { "FILPS:CURR_RB",     "FILPS_CURR",       0,      "Filaments current",                     "A",  2  }
+    { "FILPS:VOLT_RB",     "FILPS_VOLT",       0,      "Filaments voltage",                     "V",  2  }
+    { "IONPMP:R_RB",       "IONPS_R",          0,      "Ion pump controller",                   "V",  2  }
+    { "SOLPS:CURR_RB",     "SOLPS_CURR",       0,      "Solenoid current",                      "A",  2  }
+    { "SOLPS:VOLT_RB",     "SOLPS_VOLT",       0,      "Solenoid voltage",                      "V",  2  }
+    { "PLS:CURR_RB",       "PULSE_A",          0,      "Pulse current",                         "A",  2  }
+    { "PLS:VOLT_RB",       "PULSE_A",          2,      "Pulse voltage",                         "kV", 2  }
+    { "PLS:WDTH_RB",       "PULSE_B",          0,      "Pulse width",                           "us", 2  }
+    { "OIL:TEMP_RB",       "TANK_TEMP",        0,      "Transformer tank oil temperature",      "C",  2  }
+    { "OIL:LVL_RB",        "TANK_LEVEL",       0,      "Transformer tank oil level",            "mm", 2  }
+    { "CLL:INLETTEMP_RB",  "TEMP_A",           0,      "Cooling water inlet temperature",       "C",  2  }
+    { "CLL:OUTLETTEMP_RB", "TEMP_A",           2,      "Cooling water outlet temperature",      "C",  2  }
+    { "SOLPS:TEMP_RB",     "TEMP_B",           0,      "Solenoid temperature",                  "C",  2  }
+    { "KLY:OUTLETTEMP_RB", "TEMP_B",           2,      "Klystron body outlet temperature",      "C",  2  }
+    { "KLY:RFFWD_RB",      "RF_A",             0,      "Klystron forward RF power",             "W",  2  }
+    { "KLY:RFREFL_RB",     "RF_A",             2,      "Klystron reflected RF power",           "W",  2  }
+    { "KLY:RFVSWR_RB",     "RF_VSWR",          0,      "Klystron RF VSWR",                      "",   2  }
+    { "KLY:RFPLEN_RB",     "RF_B",             0,      "Klystron RF pulse length",              "us", 2  }
+    { "CCPS:FLOW_1_RB",    "FLOW_A",           0,      "CCPS cooling water flow #1",            "l/s", 2 }
+    { "CCPS:FLOW_2_RB",    "FLOW_A",           2,      "CCPS cooling water flow #2",            "l/s", 2 }
+    { "CCPS:FLOW_3_RB",    "FLOW_A",           4,      "CCPS cooling water flow #3",            "l/s", 2 }
+    { "CCPS:FLOW_4_RB",    "FLOW_B",           0,      "CCPS cooling water flow #4",            "l/s", 2 }
+    { "KLY:BODYFLOW_RB",   "FLOW_B",           2,      "Klystron body cooling water flow",      "l/s", 2 }
+    { "CLL:FLOW_RB",       "FLOW_C",           0,      "Collector cooling water flow",          "l/s", 2 }
+    { "SOLPS:FLOW_RB",     "FLOW_C",           2,      "Solenoid cooling water flow",           "l/s", 2 }
+}
+
+file "singleout.template" {
+    pattern { RECNAME,             PORT,                                  LOPR, HOPR,  EGU,  DESC }
+    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    65000, "V",  "CCPS voltage SP"          }
+    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    65000, "us", "Pulse width SP"           }
+    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    65000, "A",  "Filament current SP"      }
+}
+
+## RF modulator control, state, status and access records 
+file "scandinova-rfmod-specific.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+
+## TCP protocol records
+file "scandinova-rfmod-tcp.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+
+## Watchdog records
+file "scandinova-rfmod-wd.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+
+## RF modulator delay timer records 
+file "delay-timer.template" { pattern
+    { PORT }
+        { "$(RFMOD_ASYNPORT)" }
+}
+
+## RF modulator CCPS interlock status records (unchanged)
+
+file "ccps-status-optimized.template" {
+    pattern { CCPS_NUM,  PORT,         OFFSET }
+    { "1",       "CCPS_ILCKS",  0      }
+    { "2",       "CCPS_ILCKS",  1      }
+    { "3",       "CCPS_ILCKS",  2      }
+}
+
