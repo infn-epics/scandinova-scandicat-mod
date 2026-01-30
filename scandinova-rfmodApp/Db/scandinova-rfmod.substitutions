@@ -39,9 +39,9 @@ file "singlein.template" { pattern
 ## RF modulator Float setpoints
 file "singleout.template" { pattern
     { RECNAME, PORT, LOPR, HOPR, EGU, DESC }
-        {":CCPS:V_SP", "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP", 0, "$(CCPS_V_SP_HOPR=1270)", "V", "Pulse amplitude for all CCPS"}
-        {":PLS:WDTH_SP", "$(RFMOD_ASYNPORT)_PLS_WDTH_SP", 2, "$(PLS_WDTH_SP_HOPR=10)", "us", "Pulse width"}
-        {":FILPS:CURR_SP", "$(RFMOD_ASYNPORT)_FILPS_CURR_SP", 0, "$(FILPS_CURR_SP_HOPR=30)", "A", "Filaments current"}
+        {":CCPS:V_SP", "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP", 0, "$(CCPS_V_SP_HOPR)", "V", "Pulse amplitude for all CCPS"}
+        {":PLS:WDTH_SP", "$(RFMOD_ASYNPORT)_PLS_WDTH_SP", 2, "$(PLS_WDTH_SP_HOPR)", "us", "Pulse width"}
+        {":FILPS:CURR_SP", "$(RFMOD_ASYNPORT)_FILPS_CURR_SP", 0, "$(FILPS_CURR_SP_HOPR)", "A", "Filaments current"}
 }
 
 ## RF modulator control, state, status and access records 

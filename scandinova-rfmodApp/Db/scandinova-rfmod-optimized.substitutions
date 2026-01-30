@@ -52,9 +52,9 @@ file "singlein-optimized.template" {
 
 file "singleout.template" {
     pattern { RECNAME,             PORT,                                  LOPR, HOPR,  EGU,  DESC }
-    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    "$(CCPS_V_SP_HOPR=65000)", "V",  "CCPS voltage SP"          }
-    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    "$(PLS_WDTH_SP_HOPR=65000)", "us", "Pulse width SP"           }
-    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    "$(FILPS_CURR_SP_HOPR=65000)", "A",  "Filament current SP"      }
+    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    "$(CCPS_V_SP_HOPR)", "V",  "CCPS voltage SP"          }
+    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    "$(PLS_WDTH_SP_HOPR)", "us", "Pulse width SP"           }
+    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    "$(FILPS_CURR_SP_HOPR)", "A",  "Filament current SP"      }
 }
 
 ## RF modulator control, state, status and access records 
