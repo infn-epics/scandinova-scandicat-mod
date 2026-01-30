@@ -15,24 +15,24 @@ global {
 }
 
 file "singlein-optimized.template" {
-    pattern { RECORD,              PORT,              OFFSET, DESC,                                    EGU,  PREC }
-    { "PLS:REPR_RB",       "STATUS_BLOCK",     8,      "Pulse repetition rate",                 "Hz", 2  }
-    { "CCPS:VOLT_SET_RB",  "SETPOINT_RB_A",    1,      "CCPS voltage SP RBV",                   "V",  2  }
-    { "FILPS:CURR_SET_RB", "SETPOINT_RB_A",    3,      "Filaments current setpoint RBV",        "A",  2  }
-    { "PLS:WDTH_SET_RB",   "SETPOINT_RB_B",    1,      "Pulse width set SP RBV",                "us", 2  }
-    { "CCPS1:VOLT_RB",     "CCPS_VOLTS",       0,      "CCPS1 voltage",                         "V",  2  }
-    { "CCPS2:VOLT_RB",     "CCPS_VOLTS",       2,      "CCPS2 voltage",                         "V",  2  }
-    { "CCPS3:VOLT_RB",     "CCPS_VOLTS",       4,      "CCPS3 voltage",                         "V",  2  }
-    { "FILPS:CURR_RB",     "FILPS_CURR",       0,      "Filaments current",                     "A",  2  }
-    { "FILPS:VOLT_RB",     "FILPS_VOLT",       0,      "Filaments voltage",                     "V",  2  }
-    { "IONPMP:R_RB",       "IONPS_R",          0,      "Ion pump controller",                   "V",  2  }
-    { "SOLPS:CURR_RB",     "SOLPS_CURR",       0,      "Solenoid current",                      "A",  2  }
-    { "SOLPS:VOLT_RB",     "SOLPS_VOLT",       0,      "Solenoid voltage",                      "V",  2  }
-    { "PLS:CURR_RB",       "PULSE_A",          0,      "Pulse current",                         "A",  2  }
-    { "PLS:VOLT_RB",       "PULSE_A",          2,      "Pulse voltage",                         "kV", 2  }
-    { "PLS:WDTH_RB",       "PULSE_B",          0,      "Pulse width",                           "us", 2  }
-    { "OIL:TEMP_RB",       "TANK_TEMP",        0,      "Transformer tank oil temperature",      "C",  2  }
-    { "OIL:LVL_RB",        "TANK_LEVEL",       0,      "Transformer tank oil level",            "mm", 2  }
+    pattern { RECORD,              PORT,              OFFSET, DESC,                                    EGU,  PREC, HIGH, HIHI, HSV, HHSV }
+    { "PLS:REPR_RB",       "STATUS_BLOCK",     8,      "Pulse repetition rate",                 "Hz", 2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "CCPS:VOLT_SET_RB",  "SETPOINT_RB_A",    1,      "CCPS voltage SP RBV",                   "V",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "FILPS:CURR_SET_RB", "SETPOINT_RB_A",    3,      "Filaments current setpoint RBV",        "A",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "PLS:WDTH_SET_RB",   "SETPOINT_RB_B",    1,      "Pulse width set SP RBV",                "us", 2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "CCPS1:VOLT_RB",     "CCPS_VOLTS",       0,      "CCPS1 voltage",                         "V",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "CCPS2:VOLT_RB",     "CCPS_VOLTS",       2,      "CCPS2 voltage",                         "V",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "CCPS3:VOLT_RB",     "CCPS_VOLTS",       4,      "CCPS3 voltage",                         "V",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "FILPS:CURR_RB",     "FILPS_CURR",       0,      "Filaments current",                     "A",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "FILPS:VOLT_RB",     "FILPS_VOLT",       0,      "Filaments voltage",                     "V",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "IONPMP:R_RB",       "IONPS_R",          0,      "Ion pump controller",                   "nA",  2, "$(IONPMP_HIGH=8000)", "$(IONPMP_HIHI=9000)", "MINOR", "MAJOR" }
+    { "SOLPS:CURR_RB",     "SOLPS_CURR",       0,      "Solenoid current",                      "A",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "SOLPS:VOLT_RB",     "SOLPS_VOLT",       0,      "Solenoid voltage",                      "V",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "PLS:CURR_RB",       "PULSE_A",          0,      "Pulse current",                         "A",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "PLS:VOLT_RB",       "PULSE_A",          2,      "Pulse voltage",                         "kV", 2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "PLS:WDTH_RB",       "PULSE_B",          0,      "Pulse width",                           "us", 2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "OIL:TEMP_RB",       "TANK_TEMP",        0,      "Transformer tank oil temperature",      "C",  2,  "", "", "NO_ALARM", "NO_ALARM" }
+    { "OIL:LVL_RB",        "TANK_LEVEL",       0,      "Transformer tank oil level",            "mm", 2,  "", "", "NO_ALARM", "NO_ALARM" }
     { "CLL:INLETTEMP_RB",  "TEMP_A",           0,      "Cooling water inlet temperature",       "C",  2  }
     { "CLL:OUTLETTEMP_RB", "TEMP_A",           2,      "Cooling water outlet temperature",      "C",  2  }
     { "SOLPS:TEMP_RB",     "TEMP_B",           0,      "Solenoid temperature",                  "C",  2  }
@@ -52,9 +52,9 @@ file "singlein-optimized.template" {
 
 file "singleout.template" {
     pattern { RECNAME,             PORT,                                  LOPR, HOPR,  EGU,  DESC }
-    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    65000, "V",  "CCPS voltage SP"          }
-    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    65000, "us", "Pulse width SP"           }
-    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    65000, "A",  "Filament current SP"      }
+    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    "$(CCPS_V_SP_HOPR=65000)", "V",  "CCPS voltage SP"          }
+    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    "$(PLS_WDTH_SP_HOPR=65000)", "us", "Pulse width SP"           }
+    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    "$(FILPS_CURR_SP_HOPR=65000)", "A",  "Filament current SP"      }
 }
 
 ## RF modulator control, state, status and access records 

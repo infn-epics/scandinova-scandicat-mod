@@ -9,30 +9,30 @@ global {
 }
 
 file "singlein-optimized.template" {
-    pattern { RECORD,              PORT,                           OFFSET, DESC,                                    EGU,  PREC, SCAN }
-    { "PLS:REPR_RB",       "READ_PLS_REPR_RB",            0,      "Pulse repetition rate",                 "Hz", 2  }
+    pattern { RECORD,              PORT,                           OFFSET, DESC,                                    EGU,  PREC, SCAN, HIGH, HIHI, HSV, HHSV }
+    { "PLS:REPR_RB",       "READ_PLS_REPR_RB",            0,      "Pulse repetition rate",                 "Hz", 2, "", "", "", "NO_ALARM", "NO_ALARM"  }
 
-    { "CCPS:VOLT_SET_RB",  "READ_CCPS_VOLT_SET_RB",       0,      "CCPS voltage SP RBV",                   "V",  2  }
-    { "FILPS:CURR_SET_RB", "READ_FILPS_CURR_SET_RB",      0,      "Filaments current setpoint RBV",        "A",  2  }
-    { "PLS:WDTH_SET_RB",   "READ_PLS_WDTH_SET_RB",        0,      "Pulse width set SP RBV",                "us", 2  }
+    { "CCPS:VOLT_SET_RB",  "READ_CCPS_VOLT_SET_RB",       0,      "CCPS voltage SP RBV",                   "V",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "FILPS:CURR_SET_RB", "READ_FILPS_CURR_SET_RB",      0,      "Filaments current setpoint RBV",        "A",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "PLS:WDTH_SET_RB",   "READ_PLS_WDTH_SET_RB",        0,      "Pulse width set SP RBV",                "us", 2, "", "", "", "NO_ALARM", "NO_ALARM"  }
 
-    { "CCPS1:VOLT_RB",     "READ_CCPS1_VOLT",             0,      "CCPS1 voltage",                         "V",  2  }
-    { "CCPS2:VOLT_RB",     "READ_CCPS2_VOLT",             0,      "CCPS2 voltage",                         "V",  2  }
-    { "CCPS3:VOLT_RB",     "READ_CCPS3_VOLT",             0,      "CCPS3 voltage",                         "V",  2  }
+    { "CCPS1:VOLT_RB",     "READ_CCPS1_VOLT",             0,      "CCPS1 voltage",                         "V",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "CCPS2:VOLT_RB",     "READ_CCPS2_VOLT",             0,      "CCPS2 voltage",                         "V",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "CCPS3:VOLT_RB",     "READ_CCPS3_VOLT",             0,      "CCPS3 voltage",                         "V",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
 
-    { "FILPS:CURR_RB",     "READ_FILPS_CURR",             0,      "Filaments current",                     "A",  2  }
-    { "FILPS:VOLT_RB",     "READ_FILPS_VOLT",             0,      "Filaments voltage",                     "V",  2  }
+    { "FILPS:CURR_RB",     "READ_FILPS_CURR",             0,      "Filaments current",                     "A",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "FILPS:VOLT_RB",     "READ_FILPS_VOLT",             0,      "Filaments voltage",                     "V",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
 
-    { "IONPMP:R_RB",       "READ_IONPS_R",                0,      "Ion pump controller",                   "V",  2  }
+    { "IONPMP:R_RB",       "READ_IONPS_R",                0,      "Ion pump controller",                   "nA",  2, "", "$(IONPMP_HIGH=8000)", "$(IONPMP_HIHI=9000)", "MINOR", "MAJOR"  }
 
-    { "SOLPS:CURR_RB",     "READ_SOLPS_CURR",             0,      "Solenoid current",                      "A",  2  }
-    { "SOLPS:VOLT_RB",     "READ_SOLPS_VOLT",             0,      "Solenoid voltage",                      "V",  2  }
+    { "SOLPS:CURR_RB",     "READ_SOLPS_CURR",             0,      "Solenoid current",                      "A",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "SOLPS:VOLT_RB",     "READ_SOLPS_VOLT",             0,      "Solenoid voltage",                      "V",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
 
-    { "PLS:CURR_RB",       "READ_PLS_CURR",               0,      "Pulse current",                         "A",  2  }
-    { "PLS:VOLT_RB",       "READ_PLS_VOLT",               0,      "Pulse voltage",                         "kV", 2  }
-    { "PLS:WDTH_RB",       "READ_PLS_WDTH",               0,      "Pulse width",                           "us", 2  }
+    { "PLS:CURR_RB",       "READ_PLS_CURR",               0,      "Pulse current",                         "A",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "PLS:VOLT_RB",       "READ_PLS_VOLT",               0,      "Pulse voltage",                         "kV", 2, "", "", "", "NO_ALARM", "NO_ALARM"  }
+    { "PLS:WDTH_RB",       "READ_PLS_WDTH",               0,      "Pulse width",                           "us", 2, "", "", "", "NO_ALARM", "NO_ALARM"  }
 
-    { "OIL:TEMP_RB",       "READ_TANK_TEMP",              0,      "Transformer tank oil temperature",      "C",  2  }
+    { "OIL:TEMP_RB",       "READ_TANK_TEMP",              0,      "Transformer tank oil temperature",      "C",  2, "", "", "", "NO_ALARM", "NO_ALARM"  }
     { "OIL:LVL_RB",        "READ_TANK_LEVEL",             0,      "Transformer tank oil level",            "mm", 2  }
 
     { "CLL:INLETTEMP_RB",  "READ_CLL_IN_TEMP",            0,      "Cooling water inlet temperature",       "C",  2  }
@@ -82,7 +82,7 @@ file "ccps-status-optimized.template" {
 ## Setpoint outputs (enable writing of CCPS voltage, pulse width, filament current)
 file "singleout.template" {
     pattern { RECNAME,             PORT,                               LOPR, HOPR,  EGU,  DESC }
-    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    65000, "V",  "CCPS voltage SP"          }
-    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    65000, "us", "Pulse width SP"           }
-    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    65000, "A",  "Filament current SP"      }
+    { ":CCPS:V_SP",        "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP",     0,    "$(CCPS_V_SP_HOPR=65000)", "V",  "CCPS voltage SP"          }
+    { ":PLS:WDTH_SP",      "$(RFMOD_ASYNPORT)_PLS_WDTH_SP",      0,    "$(PLS_WDTH_SP_HOPR=65000)", "us", "Pulse width SP"           }
+    { ":FILPS:CURR_SP",    "$(RFMOD_ASYNPORT)_FILPS_CURR_SP",    0,    "$(FILPS_CURR_SP_HOPR=65000)", "A",  "Filament current SP"      }
 }

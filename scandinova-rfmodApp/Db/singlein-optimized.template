@@ -13,6 +13,10 @@
 #   DATATYPE     - FLOAT32_LE or INT16 or UINT16
 #   HOPR         - High operating range (optional, default 0xFFFF)
 #   LOPR         - Low operating range (optional, default 0)
+#   HIGH         - High warning alarm limit (optional)
+#   HIHI         - High-high error alarm limit (optional)
+#   HSV          - High alarm severity (optional, default NO_ALARM)
+#   HHSV         - High-high alarm severity (optional, default NO_ALARM)
 ################################################################################
 
 record(ai, "$(PREFIX):$(RECORD)") {
@@ -24,4 +28,8 @@ record(ai, "$(PREFIX):$(RECORD)") {
     field(LOPR, "$(LOPR=0)")
     field(PREC, "$(PREC=2)")
     field(SCAN, "$(SCAN=I/O Intr)")
+    field(HIGH, "$(HIGH=)")
+    field(HIHI, "$(HIHI=)")
+    field(HSV,  "$(HSV=NO_ALARM)")
+    field(HHSV, "$(HHSV=NO_ALARM)")
 }

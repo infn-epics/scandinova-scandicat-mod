@@ -1,23 +1,23 @@
 
 ## RF modulator Float readbacks
 file "singlein.template" { pattern
-    { RECNAME, PORT, LOPR, HOPR, EGU, DESC }
-        { ":PLS:REPR_RB", "$(RFMOD_ASYNPORT)_PLS_REP_RATE", 0, 0xFFFF, "Hz", "Pulse repetition rate"}
-        { ":CCPS:VOLT_SET_RB", "$(RFMOD_ASYNPORT)_CCPS_VOLT_SR", 0, 0xFFFF, "V", "CCPS voltage SP RBV"}  
-        { ":CCPS1:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS1_VOLT", 0, 0xFFFF, "V", "CCPS1 voltage"} 
-        { ":CCPS2:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS2_VOLT", 0, 0xFFFF, "V", "CCPS2 voltage"}   
-        { ":CCPS3:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS3_VOLT", 0, 0xFFFF, "V", "CCPS3 voltage"}
-        { ":FILPS:CURR_SET_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR_SR", 0, 0xFFFF, "A", "Filaments current setpoint RBV"}
-        { ":FILPS:CURR_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR", 0, 0xFFFF, "A", "Filaments current"}
-        { ":FILPS:VOLT_RB", "$(RFMOD_ASYNPORT)_FILPS_VOLT", 0, 0xFFFF, "V", "Filaments voltage"}
-        { ":IONPMP:R_RB", "$(RFMOD_ASYNPORT)_IONPS_R", 0, 0xFFFF, "V", "Ion pump controller"}
-        { ":SOLPS:CURR_RB", "$(RFMOD_ASYNPORT)_SOLPS_CURR", 0, 0xFFFF, "A",  "Solenoid current"}
-        { ":SOLPS:VOLT_RB", "$(RFMOD_ASYNPORT)_SOLPS_VOLT", 0, 0xFFFF, "V", "Solenoid voltage"}
-        { ":PLS:CURR_RB", "$(RFMOD_ASYNPORT)_PLS_CURR", 0, 0xFFFF, "A", "Pulse current"}
-        { ":PLS:VOLT_RB", "$(RFMOD_ASYNPORT)_PLS_VOLT", 0, 0xFFFF, "kV", "Pulse voltage"}
-        { ":PLS:WDTH_RB", "$(RFMOD_ASYNPORT)_PLS_WDTH", 0, 0xFFFF, "us",  "Pulse width"}
-        { ":PLS:WDTH_SET_RB", "$(RFMOD_ASYNPORT)_PLS_WDTH_SR", 0, 0xFFFF, "us",  "Pulse width set SP RBV"}
-        { ":OIL:TEMP_RB", "$(RFMOD_ASYNPORT)_OIL_TEMP", 0, 0xFFFF, "C", "Transformer tank oil temperature"}
+    { RECNAME, PORT, LOPR, HOPR, EGU, DESC, HIGH, HIHI, HSV, HHSV }
+        { ":PLS:REPR_RB", "$(RFMOD_ASYNPORT)_PLS_REP_RATE", 0, 0xFFFF, "Hz", "Pulse repetition rate", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":CCPS:VOLT_SET_RB", "$(RFMOD_ASYNPORT)_CCPS_VOLT_SR", 0, 0xFFFF, "V", "CCPS voltage SP RBV", "", "", "NO_ALARM", "NO_ALARM"}  
+        { ":CCPS1:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS1_VOLT", 0, 0xFFFF, "V", "CCPS1 voltage", "", "", "NO_ALARM", "NO_ALARM"} 
+        { ":CCPS2:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS2_VOLT", 0, 0xFFFF, "V", "CCPS2 voltage", "", "", "NO_ALARM", "NO_ALARM"}   
+        { ":CCPS3:VOLT_RB", "$(RFMOD_ASYNPORT)_CCPS3_VOLT", 0, 0xFFFF, "V", "CCPS3 voltage", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":FILPS:CURR_SET_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR_SR", 0, 0xFFFF, "A", "Filaments current setpoint RBV", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":FILPS:CURR_RB", "$(RFMOD_ASYNPORT)_FILPS_CURR", 0, 0xFFFF, "A", "Filaments current", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":FILPS:VOLT_RB", "$(RFMOD_ASYNPORT)_FILPS_VOLT", 0, 0xFFFF, "V", "Filaments voltage", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":IONPMP:R_RB", "$(RFMOD_ASYNPORT)_IONPS_R", 0, 0xFFFF, "nA", "Ion pump controller", "$(IONPMP_HIGH=8000)", "$(IONPMP_HIHI=9000)", "MINOR", "MAJOR", "$(IONPMP_HIGH=8000)", "$(IONPMP_HIHI=9000)", "MINOR", "MAJOR"}
+        { ":SOLPS:CURR_RB", "$(RFMOD_ASYNPORT)_SOLPS_CURR", 0, 0xFFFF, "A",  "Solenoid current", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":SOLPS:VOLT_RB", "$(RFMOD_ASYNPORT)_SOLPS_VOLT", 0, 0xFFFF, "V", "Solenoid voltage", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":PLS:CURR_RB", "$(RFMOD_ASYNPORT)_PLS_CURR", 0, 0xFFFF, "A", "Pulse current", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":PLS:VOLT_RB", "$(RFMOD_ASYNPORT)_PLS_VOLT", 0, 0xFFFF, "kV", "Pulse voltage", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":PLS:WDTH_RB", "$(RFMOD_ASYNPORT)_PLS_WDTH", 0, 0xFFFF, "us",  "Pulse width", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":PLS:WDTH_SET_RB", "$(RFMOD_ASYNPORT)_PLS_WDTH_SR", 0, 0xFFFF, "us",  "Pulse width set SP RBV", "", "", "NO_ALARM", "NO_ALARM"}
+        { ":OIL:TEMP_RB", "$(RFMOD_ASYNPORT)_OIL_TEMP", 0, 0xFFFF, "C", "Transformer tank oil temperature", "", "", "NO_ALARM", "NO_ALARM"}
         { ":OIL:LVL_RB", "$(RFMOD_ASYNPORT)_OIL_LVL", 0, 0xFFFF, "mm", "Transformer tank oil level"}
         { ":CLL:INLETTEMP_RB", "$(RFMOD_ASYNPORT)_INLETTEMP", 0, 0xFFFF, "C",  "Cooling water inlet temperature"}  
         { ":CLL:OUTLETTEMP_RB", "$(RFMOD_ASYNPORT)_OUTLETTEMP", 0, 0xFFFF, "C", "Cooling water outlet temperature"}
@@ -39,9 +39,9 @@ file "singlein.template" { pattern
 ## RF modulator Float setpoints
 file "singleout.template" { pattern
     { RECNAME, PORT, LOPR, HOPR, EGU, DESC }
-        {":CCPS:V_SP", "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP", 0, 1500, "V", "Pulse amplitude for all CCPS"}
-        {":PLS:WDTH_SP", "$(RFMOD_ASYNPORT)_PLS_WDTH_SP", 2, 10, "us", "Pulse width"}
-        {":FILPS:CURR_SP", "$(RFMOD_ASYNPORT)_FILPS_CURR_SP", 0, 30, "A", "Filaments current"}
+        {":CCPS:V_SP", "$(RFMOD_ASYNPORT)_CCPS_VOLT_SP", 0, "$(CCPS_V_SP_HOPR=1270)", "V", "Pulse amplitude for all CCPS"}
+        {":PLS:WDTH_SP", "$(RFMOD_ASYNPORT)_PLS_WDTH_SP", 2, "$(PLS_WDTH_SP_HOPR=10)", "us", "Pulse width"}
+        {":FILPS:CURR_SP", "$(RFMOD_ASYNPORT)_FILPS_CURR_SP", 0, "$(FILPS_CURR_SP_HOPR=30)", "A", "Filaments current"}
 }
 
 ## RF modulator control, state, status and access records 

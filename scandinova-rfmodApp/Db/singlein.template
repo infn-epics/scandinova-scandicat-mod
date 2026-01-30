@@ -8,4 +8,8 @@ record(ai, "$(PREFIX)$(RECNAME)") {
     field(LOPR, "$(LOPR)")
     field(PREC, "2")
     field(SCAN, "I/O Intr")
+    field(HIGH, "$(HIGH=)")
+    field(HIHI, "$(HIHI=)")
+    field(HSV,  "$(HSV=NO_ALARM)")
+    field(HHSV, "$(HHSV=NO_ALARM)")
 }
