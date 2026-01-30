@@ -18,6 +18,8 @@ include $(TOP)/configure/CONFIG
 DB += scandinova-rfmod.db
 DB += scandinova-rfmod-optimized.db
 DB += scandinova-rfmod-split-debug.db
+DB += scandinova-rfmod-lite.db
+DB += ioc-version.db
 
 
 include $(TOP)/configure/RULES

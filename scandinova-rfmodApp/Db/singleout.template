@@ -3,7 +3,9 @@ record(ao, "$(PREFIX)$(RECNAME)") {
     field(DTYP, "asynFloat64")
     field(OUT,  "@asyn($(PORT) 0)FLOAT32_LE")
     field(EGU,  "$(EGU)")
-    field(HOPR, "$(HOPR)")
-    field(LOPR, "$(LOPR)")
+    field(HOPR, "$(HOPR=)")
+    field(LOPR, "$(LOPR=)")
+    field(DRVH, "$(HOPR=)")
+    field(DRVL, "$(LOPR)")
     field(PREC, "2")
 }

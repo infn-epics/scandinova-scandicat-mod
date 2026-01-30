@@ -1,0 +1,6 @@
+record(stringin, "$(PREFIX):IOC:VERSION") {
+    field(DESC, "IOC Software Version")
+    field(VAL,  "$(VERSION)")
+    field(PINI, "YES")
+}
+

@@ -1,5 +1,5 @@
 epicsEnvSet("IOC","iocscandinova-rfmod")
-epicsEnvSet("TOP","/app/IOC-DEVEL/scandinova-rfmod")
+epicsEnvSet("TOP","/app/IOC-DEVEL/scandinova-scandicat-mod")
 epicsEnvSet("EPICS_BASE","/epics/epics-base/")
 epicsEnvSet("SUPPORT","/epics/support/")
 epicsEnvSet("ASYN","/epics/support//asyn")
